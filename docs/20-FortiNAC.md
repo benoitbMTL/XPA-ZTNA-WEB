@@ -1,4 +1,5 @@
 # FortiNAC
+
 FortiNAC is a zero-trust access solution that oversees and protects all digital assets connected to the enterprise network, covering devices ranging from IT, IoT, OT/ICS, to IoMT. With network access control that enhances the Fortinet Security Fabric, FortiNAC delivers visibility, control, and automated response for everything that connects to the network. FortiNAC provides protection against IoT threats, extends control to third-party network devices, and orchestrates automatic response to a wide range of network events.
 
 ## Self-Registration via Captive Portal
@@ -9,7 +10,11 @@ Automated provisioning for users, guests, and devices
 **(student\<POD_ID\>)/F0rtinet**  
 <br>
 
-- Go to **"Network / Inventory / SPOKE-1.corp.fabriclab.ca / PODS-1"**
+- Go to **"Network / Inventory / SPOKE-1.corp.fabriclab.ca / PODS-X"**
+
+> POD 1 to 22 are on PODS-1 switch
+> POD 23, 24, and 25 are on PODS-2 switch
+
 - Sort by **Label** and see the status of your PODs', the POD number are identified in the column, "Notes"
 - A Computer with an ? mean this is a "Rogues Host"
 - Notice when you select a port you have detailed host information at the bottom
@@ -48,7 +53,7 @@ Automated provisioning for users, guests, and devices
 ![NAC Guest Registration Pending](./images/nac_guest_pending.png){ width=70% }
 
 - Because your student username is a FortiNAC administrator, you can approve the request yourself with or without a greeting message.
-- Open **Edge** and click on the bookmark **FortiMail - Webmail** under the folder **Servers**.
+- From you POD open another TAB in **Edge** and click on the bookmark **FortiMail - Webmail** under the folder **Servers**.
 - If you get a certificate error just accept it
 
 ![NAC FortiMail Login](./images/nac_fortimail_login.png){ width=70% }
@@ -85,7 +90,7 @@ Automated provisioning for users, guests, and devices
 
 ![Win Guest IP CMD](./images/windows_cmd_guest_ip.png){ width=70% }
 
-- Go back to **FortiNAC-CA** and click the refresh icon if you are still in the inventory page. If not go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-1"**
+- Go back to **FortiNAC-CA** and click the refresh icon if you are still in the inventory page. If not go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-X"**
 - Click on the port and examine the detailed host info, IP address should be the same as in the `ipconfig` output
 - Now you should be in VLAN 103, this is the Guest VLAN
 
@@ -98,6 +103,14 @@ Automated provisioning for users, guests, and devices
 - Go to **"Users & Host / Account Requests"** to list the history of all requests made on the system
 
 ![NAC Guest Requests](./images/nac_guest_requests.png){ width=70% }
+
+- Go to **"Users & Host / Endpoint Fingerprints"** to list all the devices seen by the FortiNAC. In that same menu you can explore other tools like, NMAP, FortiGuard IoT Scan, etc.
+
+![](images/20_fingerprint.png){ width=70% }
+
+- Right click on a host that has **DHCPv4" as a source and see the attributes.
+
+![Alt text](images/20_attributes.png){ width=70% }
 
 - Go to **"Users & Host / Hosts"** and find you registered host by searching your POD in the search bar (e.g.: POD-2, POD-* or POD*)
 
@@ -159,7 +172,7 @@ You will see the generated MAC address for your Ethernet card
 
 ![NAC BYOD Policy Details](./images/nac_hosts_byod_policydetails_pod2.png){ width=70% }    
 
-  - Go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-1"**
+  - Go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-X"**
   - Filter by **"Label"** and find your port
   - Check the status icon and VLAN information.  You also have all the details at the bottom.
 
@@ -202,11 +215,7 @@ MDM server periodically in order to update records for those hosts already regis
 
 - Upon EMS registration your host is now managed by an MDM solution.
 
-\
-
-::: {.fail}
 - **IMPORTANT: YOU MUST DISABLE AND RE-ENABLE YOUR ETHERNET CARD TO TRIGGER A NEW IP! USE THE "BOUNCE NIC CARD" SCRIPT ON THE DESKTOP**
-:::
 
 > **Why "Bounce" the NIC card after EMS registration?**.....This is for the POD to get a new IP address on the "Production" VLAN. NAC moved the POD VLAN via RADIUS/COA,  from BYOD to PRODUCTION VLAN when it detected the EMS/MDM Managed. Since the POD didn't see the port go down it doesn't renew its IP. This is why the "Bounce" is necessary, otherwise the POD would have to wait for DHCP lease to renew.
 
@@ -230,7 +239,7 @@ MDM server periodically in order to update records for those hosts already regis
 ![NAC Managed by MDM](./images/nac_mdm_managed.png)
 
 - FortiNAC should now have moved your host into the Production VLAN (VLAN 100).
-- Go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-1"** and filter by Label.
+- Go to **"Network / Inventory / SPOKE1 / SPOKE-1.corp.fabriclab.ca / PODS-X"** and filter by Label.
 
 > What VLAN are you on now? It should be 100 for "Current VLAN"
 
@@ -320,7 +329,6 @@ When FortiNAC is first deployed, after the initial discovery of infrastructure d
 
 The preferred method is to deploy the FortiNAC Persistent Agent on endpoint devices. Once the agent is installed, it will communicate with the FortiNAC server when it is connected to the network.
 
-\
 In the previous exercise, we have registered the Host to EMS using FortiClient. In this exercise, we will see that FortiNAC agent can be used for registration and compliance in complement of or when there is no MDM solutions, like EMS are being used.
 
 ### FortiNAC Persistent Agent
@@ -403,4 +411,3 @@ FortiNAC agent is verifying every 60 seconds that you have proper protection whe
 > Please [click here](https://xperts.fabriclab.ca/xperts/tags/enwce2s) to download your new tag!
 >
 > <font color="red"><b>IMPORTANT!!!:</b></font> If you're following this guide from your personal laptop make sure to copy the link and open it from your pod instead for your tag to count!
-
