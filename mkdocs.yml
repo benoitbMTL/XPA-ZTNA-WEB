@@ -1,0 +1,89 @@
+site_name: Fortinet XPERTS Academy 2023
+
+theme:
+  name: material
+  logo: images/fortinet.svg
+  favicon: images/fortinet.svg
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      primary: red
+      accent: red
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: white
+      accent: white
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+# Remove Default Footer
+extra:
+  generator: false
+
+# Footer
+copyright: Fortinet Canada CSE Team - Last Update October 2023
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      title: On this page
+
+  # Python Markdown Extensions
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+
+plugins:
+  - search
+  - glightbox
+  # - with-pdf
+
+nav:
+  - "Introduction": "index.md"
+  - "FortiNAC": "20-FortiNAC.md"
+  - "ZTNA": "30-ZTNA.md"
+  - "FortiTrustID": "31-FortiTrustID.md"
+  - "FortiPAM AV & DLP": "40-FortiPAM_AV_DLP.md"
+  - "FortiPAM SSH": "41-FortiPAM_SSH.md"
+  - "OT & MicroSegementation": "50-OT-MicroSegement.md"
+
