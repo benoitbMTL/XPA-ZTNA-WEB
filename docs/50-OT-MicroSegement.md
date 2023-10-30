@@ -32,11 +32,11 @@ This is correct, everything is on the same VLAN! but the magic happens in the co
 
 The services allowed from each type of devices are listed under each device and it is like this:
 
-OT Device         WAN    HTTP    FTP   PING
---------------   -----  ------  ----- ------  
-PLC                N       Y      Y     N
-IED                Y       N      Y     Y
-RTU                N       Y      N     Y
+| OT Device      | WAN  | HTTP  | FTP  | PING  |
+| -------------- | ---- | ----- | ---- | ------ |
+| PLC            |  N   |   Y   |  Y   |   N    |
+| IED            |  Y   |   N   |  Y   |   Y    |
+| RTU            |  N   |   Y   |  N   |   Y    |
 
 For example, the PLC's are able to browse on local subnet and reach other devices web pages but are not able to surf the WEB or PING, lastly the PLC's are also able to reach the FTP server.
 
