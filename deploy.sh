@@ -26,4 +26,4 @@ sudo docker build -t ztna-hol .
 
 # Run the Docker container
 echo "Running the Docker container..."
-sudo docker run -d --restart unless-stopped --name ztna-hol-container -p 8000:8000 ztna-hol
+sudo docker run -d --restart unless-stopped --name ztna-hol-container -p 80:80 ztna-hol
