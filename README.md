@@ -13,8 +13,8 @@ pip install mkdocs mkdocs-material mkdocs-glightbox
 To clone the project repository and navigate to its root directory, execute the following commands:
 
 ```bash
-git clone xxx
-cd xxx
+git clone https://github.com/benoitbMTL/XPA-ZTNA-WEB.git)
+cd XPA-ZTNA-WEB
 ```
 
 See the instructions below on how to create SSH keys.
@@ -44,8 +44,8 @@ This will generate a new directory called `site`. Browse the contents of this di
 To run the Hands-on-Lab in a Docker container, execute the following commands:
 
 ```bash
-git clone xxx
-cd xxx
+git clone https://github.com/benoitbMTL/XPA-ZTNA-WEB.git)
+cd XPA-ZTNA-WEB
 chmod +x deploy.sh
 bash deploy.sh
 ```
